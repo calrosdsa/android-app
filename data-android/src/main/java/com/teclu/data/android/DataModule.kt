@@ -1,18 +1,22 @@
 package com.teclu.data.android
 
 import android.app.Application
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
+import androidx.room.Room
 import com.google.crypto.tink.Aead
 import com.google.crypto.tink.KeyTemplates
 import com.google.crypto.tink.aead.AeadConfig
-import com.google.crypto.tink.aead.AesGcmKeyManager
 import com.google.crypto.tink.integration.android.AndroidKeysetManager
-import com.teclu.domain.preferences.UserObject
-import com.teclu.domain.preferences.UserObjectSerializer
+import com.teclu.data.android.preferences.UserObject
+import com.teclu.data.android.preferences.UserObjectSerializer
+import com.teclu.soporte.AppDaoDatabase
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import java.io.File
 import javax.inject.Singleton
@@ -51,3 +55,34 @@ class DataModule {
         )
     }
 }
+
+@InstallIn(SingletonComponent::class)
+@Module
+object RoomDatabase{
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        @ApplicationContext context:Context
+    ):AppDatabase{
+        val builder = Room.databaseBuilder(context,AppDatabase::class.java,AppDatabase.DATABASE_NAME)
+        return builder.build()
+    }
+}
+
+@InstallIn(SingletonComponent::class)
+@Module
+object DatabaseDaoModule {
+    @Provides
+    fun provideCasosDao(db:AppDatabase) = db.casosDao()
+    @Provides
+    fun provideCasoEntriesDao(db:AppDatabase) = db.casoEntriesDao()
+}
+
+@InstallIn(SingletonComponent::class)
+@Module
+abstract class DatabaseModuleBinds{
+    @Binds
+    abstract fun bindAppDatabase(db:AppDatabase):AppDaoDatabase
+
+}
+

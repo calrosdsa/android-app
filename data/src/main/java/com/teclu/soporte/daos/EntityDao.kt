@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package app.tivi.data.daos
+package com.teclu.soporte.daos
 
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Transaction
 import androidx.room.Update
-import app.tivi.data.entities.TiviEntity
+import com.teclu.soporte.entities.AppEntity
 
-abstract class EntityDao<in E : TiviEntity> {
+abstract class EntityDao<in E : AppEntity> {
     @Insert
     abstract suspend fun insert(entity: E): Long
 
@@ -42,11 +42,11 @@ abstract class EntityDao<in E : TiviEntity> {
     open suspend fun withTransaction(tx: suspend () -> Unit) = tx()
 
     suspend fun insertOrUpdate(entity: E): Long {
-        return if (entity.id == 0L) {
+        return if (entity.idEntity == 0L) {
             insert(entity)
         } else {
             update(entity)
-            entity.id
+            entity.idEntity
         }
     }
 

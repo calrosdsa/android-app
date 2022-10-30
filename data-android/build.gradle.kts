@@ -20,6 +20,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.serialization)
+
 }
 
 android {
@@ -52,11 +54,12 @@ ksp {
 }
 
 dependencies {
-//    implementation(projects.base)
-    api(projects.data)
-    implementation(projects.domain)
+    implementation(projects.base)
+    implementation(projects.data)
+//    implementation(projects.domain)
 
     implementation(libs.androidx.datastore)
+    implementation(libs.serialization.protobuf)
     implementation(libs.crypto.tink)
 
     api(libs.androidx.room.runtime)

@@ -35,12 +35,14 @@ android {
 }
 
 dependencies {
-//    implementation(projects.base)
+    implementation(projects.base)
     implementation(projects.domain)
+    implementation(projects.dataAndroid)
     implementation(projects.common.ui.compose)
 //    implementation(projects.common.ui.view)
 
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.compose.material3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     implementation(libs.androidx.paging.runtime)

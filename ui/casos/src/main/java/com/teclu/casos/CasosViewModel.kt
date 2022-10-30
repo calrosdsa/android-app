@@ -1,14 +1,20 @@
 package com.teclu.casos
 
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.teclu.domain.preferences.UserObject
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.teclu.data.android.preferences.UserObject
+import com.teclu.data.android.preferences.UserPreference
+import com.teclu.domain.interactors.UpdateCasos
+import com.teclu.domain.observers.ObserveCasos
 import com.teclu.domain.use_cases.casos.GetAllCasos
-import com.teclu.soporte.dto.casos.AllCasosItem
-import com.teclu.soporte.dto.placeholder.PostUser
-import com.teclu.soporte.util.Resource
+import com.teclu.soporte.resultentity.CasosEntryWith
+import com.teclu.util.ObservableLoadingCounter
+import com.teclu.util.UiMessageManager
+import com.teclu.util.collectStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,9 +24,13 @@ import javax.inject.Inject
 @HiltViewModel
 class CasosViewModel @Inject constructor(
     private val getAllCasos: GetAllCasos,
-    userDataStore: DataStore<UserObject>
+    private val observeCasos: ObserveCasos,
+    userDataStore: DataStore<UserObject>,
+    private val updateCasos: UpdateCasos,
+    private val userPreference: UserPreference
 ) : ViewModel(){
-    private val casos = MutableStateFlow<List<AllCasosItem>>(emptyList())
+    private val loadingCouter = ObservableLoadingCounter()
+    private val uiMessageManager = UiMessageManager()
     private val userData = MutableStateFlow<UserObject>(UserObject())
     private val userDataFlow: Flow<UserObject> by lazy {
         userDataStore.data.catch { e ->
@@ -31,13 +41,16 @@ class CasosViewModel @Inject constructor(
             }
         }
     }
+    val pagedList:Flow<PagingData<CasosEntryWith>> =observeCasos.flow.cachedIn(viewModelScope)
     val state:StateFlow<CasosState> = combine(
-        casos,
-        userData
-    ){casos,user->
+//        observeCasos.flow,
+        userData,
+        uiMessageManager.message
+    ){user,message->
         CasosState(
-            casos = casos,
-            user = user
+//            casos = casos,
+            user = user,
+            message = message
         )
     }.stateIn(
         scope = viewModelScope,
@@ -47,27 +60,48 @@ class CasosViewModel @Inject constructor(
 
     init{
         viewModelScope.launch {
+            userPreference.getValue().collect{
+//              observeCasos(ObserveCasos.Params(it.token))
+                updateDataSource(it.token)
+//              getCasos(it.token)
+            }
         userDataFlow.collect{
             this@CasosViewModel.userData.emit(it)
         }
         }
-        getCasos()
+    }
+    fun updateDataSource(token:String){
+        observeCasos(ObserveCasos.Params(PAGING_CONFIG,token))
     }
 
-    private fun getCasos(){
+    private fun getCasos(token:String){
         viewModelScope.launch {
-            getAllCasos().collect { result ->
-                when (result) {
-                    is Resource.Success ->{
-                        result.data?.let {
-                            this@CasosViewModel.casos.emit(
-                                it
-                            )
-                        }
-                    }
-                    else -> {}
-                }
-            }
+            updateCasos(UpdateCasos.Params(token,1,true)).collectStatus(loadingCouter,uiMessageManager)
+//            getAllCasos(userData.value.token).collect { result ->
+//                when (result) {
+//                    is Resource.Success ->{
+//                        result.data?.let {
+//                            this@CasosViewModel.casos.emit(
+//                                it
+//                            )
+//                        }
+//                    }
+//                    else -> {}
+//                }
+//            }
         }
+    }
+
+    fun clearMessage(id:Long){
+        viewModelScope.launch {
+            uiMessageManager.clearMessage(id)
+        }
+    }
+    companion object {
+        private val PAGING_CONFIG = PagingConfig(
+            pageSize = 8,
+            prefetchDistance = 1,
+
+        )
     }
 }

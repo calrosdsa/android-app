@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.teclu.constants.Screen
 import com.teclu.domain.use_cases.auth.LoginUseCase
-import com.teclu.soporte.util.Resource
+import com.teclu.util.Resource
 import com.teclu.util.ObservableLoadingCounter
 import com.teclu.util.UiMessage
 import com.teclu.util.UiMessageManager

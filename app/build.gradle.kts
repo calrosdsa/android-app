@@ -72,12 +72,15 @@ dependencies {
     implementation(projects.data)
     implementation(projects.common.ui.compose)
     implementation(projects.base)
-    implementation(projects.ui.auth)
     implementation(projects.dataAndroid)
     implementation(projects.domain)
+
     implementation(projects.ui.casos)
+    implementation(projects.ui.auth)
+    implementation(projects.ui.casoDetail)
 
     implementation(libs.androidx.datastore)
+    implementation(libs.splashscreen)
 
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

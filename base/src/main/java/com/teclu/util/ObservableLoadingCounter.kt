@@ -59,3 +59,26 @@ suspend fun Flow<InvokeStatus>.collectStatus(
         }
     }
 }
+
+
+suspend fun <T>Flow<Resource<T>>.collectData(
+    counter: ObservableLoadingCounter,
+    uiMessageManager: UiMessageManager? = null,
+    data: MutableStateFlow<T?>,
+) = collect{ results->
+    when(results){
+        is Resource.Loading ->{
+            counter.addLoader()
+        }
+        is Resource.Success ->{
+            results.data?.let { data.emit(it) }
+            counter.removeLoader()
+        }
+        is Resource.Error ->{
+            counter.removeLoader()
+            results.message?.let{
+                uiMessageManager?.emitMessage(UiMessage(it))
+            }
+        }
+    }
+}

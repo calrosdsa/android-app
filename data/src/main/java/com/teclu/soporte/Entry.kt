@@ -15,17 +15,20 @@
 // */
 //
 package com.teclu.soporte
+
+import com.teclu.soporte.entities.AppEntity
+
 //
 //import app.tivi.data.entities.TiviEntity
 //
-//interface Entry : TiviEntity {
-//    val showId: Long
-//}
-//
-//interface MultipleEntry : Entry {
-//    val otherShowId: Long
-//}
-//
-//interface PaginatedEntry : Entry {
-//    val page: Int
-//}
+interface Entry : AppEntity {
+    val casoId: Long
+}
+
+interface MultipleEntry : Entry {
+    val otherShowId: Long
+}
+
+interface PaginatedEntry : Entry {
+    val page: Int
+}

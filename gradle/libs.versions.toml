@@ -40,6 +40,7 @@ firebase-crashlytics = "com.google.firebase.crashlytics:2.9.2"
 spotless = "com.diffplug.spotless:6.11.0"
 
 [libraries]
+splashscreen = "androidx.core:core-splashscreen:1.0.0"
 constrain-layout = "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha04"
 serialization-protobuf = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.4.1"
 crypto-tink = "com.google.crypto.tink:tink-android:1.7.0"

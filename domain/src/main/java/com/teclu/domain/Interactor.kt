@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package app.tivi.domain
+package com.teclu.domain
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import app.tivi.base.InvokeError
-import app.tivi.base.InvokeStarted
-import app.tivi.base.InvokeStatus
-import app.tivi.base.InvokeSuccess
+import com.teclu.base.InvokeError
+import com.teclu.base.InvokeStarted
+import com.teclu.base.InvokeStatus
+import com.teclu.base.InvokeSuccess
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow

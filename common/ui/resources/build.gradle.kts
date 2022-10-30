@@ -22,3 +22,4 @@ plugins {
 android {
     namespace = "com.teclu.common.ui.resources"
 }
+

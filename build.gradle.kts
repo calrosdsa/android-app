@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.gms.googleServices) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
-//    alias(libs.plugins.spotless)
+    alias(libs.plugins.spotless)
 }
 
 
@@ -28,18 +28,18 @@ allprojects {
 }
 
 subprojects {
-//    apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
-//    spotless {
-//        kotlin {
-//            target("**/*.kt")
-//            targetExclude("$buildDir/**/*.kt")
-//            targetExclude("bin/**/*.kt")
-//
-//            ktlint(libs.versions.ktlint.get())
-//                .editorConfigOverride(mapOf("disabled_rules" to "filename"))
-//            licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
-//        }
-//    }
+    apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
+    spotless {
+        kotlin {
+            target("**/*.kt")
+            targetExclude("$buildDir/**/*.kt")
+            targetExclude("bin/**/*.kt")
+
+            ktlint(libs.versions.ktlint.get())
+                .editorConfigOverride(mapOf("disabled_rules" to "filename"))
+            licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
+        }
+    }
 
     tasks.withType< org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {

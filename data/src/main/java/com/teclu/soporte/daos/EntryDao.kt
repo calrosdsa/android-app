@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package app.tivi.data.daos
+package com.teclu.soporte.daos
 
-import app.tivi.data.Entry
-import app.tivi.data.resultentities.EntryWithShow
+import com.teclu.soporte.Entry
+import com.teclu.soporte.resultentity.EntryWithCaso
 
 /**
  * This interface represents a DAO which contains entities which are part of a single collective list.
  */
-abstract class EntryDao<EC : Entry, LI : EntryWithShow<EC>> : EntityDao<EC>() {
+abstract class EntryDao<EC : Entry, LI : EntryWithCaso<EC>> : EntityDao<EC>() {
     abstract suspend fun deleteAll()
 }

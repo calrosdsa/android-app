@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package app.tivi.data.daos
+package com.teclu.soporte.daos
 
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Transaction
-import app.tivi.data.PaginatedEntry
-import app.tivi.data.resultentities.EntryWithShow
+import com.teclu.soporte.PaginatedEntry
+import com.teclu.soporte.resultentity.EntryWithCaso
 
-abstract class PaginatedEntryDao<EC : PaginatedEntry, LI : EntryWithShow<EC>> : EntryDao<EC, LI>() {
+abstract class PaginatedEntryDao<EC : PaginatedEntry, LI : EntryWithCaso<EC>> : EntryDao<EC, LI>() {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract override suspend fun insert(entity: EC): Long
 
@@ -33,8 +33,8 @@ abstract class PaginatedEntryDao<EC : PaginatedEntry, LI : EntryWithShow<EC>> : 
     abstract override suspend fun insertAll(entities: List<EC>)
 
     abstract suspend fun deletePage(page: Int)
-    abstract suspend fun getLastPage(): Int?
-
+//    abstract suspend fun getLastPage(): Int?
+//
     @Transaction
     open suspend fun updatePage(page: Int, entities: List<EC>) {
         deletePage(page)

@@ -1,9 +1,10 @@
-package com.teclu.data.android
+package com.teclu.data.android.preferences
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import com.google.crypto.tink.Aead
 import com.teclu.constants.Screen
+import com.teclu.enums.Roles
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -17,7 +18,7 @@ import java.io.OutputStream
 @Serializable
 data class UserObject(
    @SerialName("UserObjectname") val username:String="Jhon",
-   @SerialName("role") val role:Int=0,
+   @SerialName("role") val role:Roles=Roles.CLIENTE,
    @SerialName("token") val token:String="",
    @SerialName("id") val id:String="Jhon11",
    @SerialName("initialScreen") val initialScreen:String = Screen.Login.route

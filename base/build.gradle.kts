@@ -31,4 +31,6 @@ dependencies {
     api(libs.kotlin.coroutines.core)
 
     api(libs.dagger.dagger)
+    api("org.threeten:threetenbp:${libs.versions.threetenbp.get()}:no-tzdb")
+
 }

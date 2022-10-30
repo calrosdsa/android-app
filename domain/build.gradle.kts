@@ -19,7 +19,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.serialization)
 
 }
 
@@ -30,13 +29,13 @@ android {
 dependencies {
     implementation(projects.base)
     api(projects.data)
-//    implementation(projects.dataAndroid)
+    implementation(projects.dataAndroid)
 //    implementation(projects.api.traktAuth)
 //    implementation(projects.api.tmdb)
 
-    implementation(libs.androidx.datastore)
-    implementation(libs.serialization.protobuf)
-    implementation(libs.crypto.tink)
+//    implementation(libs.androidx.datastore)
+//    implementation(libs.serialization.protobuf)
+//    implementation(libs.crypto.tink)
 
 
     implementation(libs.hilt.library)

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.navigation.NavController;
 import com.teclu.constants.Screen;
 import com.teclu.domain.use_cases.auth.LoginUseCase;
-import com.teclu.soporte.util.Resource;
+import com.teclu.util.Resource;
 import com.teclu.util.ObservableLoadingCounter;
 import com.teclu.util.UiMessageManager;
 import dagger.hilt.android.lifecycle.HiltViewModel;

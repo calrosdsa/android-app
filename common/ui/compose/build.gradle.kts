@@ -34,13 +34,14 @@ android {
 }
 
 dependencies {
-//    implementation(projects.data)
+    implementation(projects.data)
+    implementation(projects.base)
 //    api(projects.common.imageloading)
 //
-//    // TODO: Remove this dependency
 //    api(projects.common.ui.view)
 
     implementation(libs.androidx.core)
+    implementation(libs.compose.material3)
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.uitextfonts)

@@ -16,10 +16,15 @@
  */
 
 plugins {
-    id("kotlin")
-    alias(libs.plugins.android.lint)
+//    id("kotlin")
+//    alias(libs.plugins.android.lint)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
+android {
+    namespace = "com.teclu.data"
+}
 
 dependencies {
 //    api(projects.base)

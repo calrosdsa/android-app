@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-package app.tivi.data.resultentities
+package com.teclu.soporte.resultentity
 
-import app.tivi.data.Entry
-import app.tivi.data.entities.ShowTmdbImage
-import app.tivi.data.entities.TiviShow
-import java.util.Objects
+import com.teclu.soporte.Entry
+import com.teclu.soporte.entities.CasoEntity
 
-interface EntryWithShow<ET : Entry> {
+interface EntryWithCaso<ET : Entry> {
     var entry: ET
-    var relations: List<TiviShow>
-    var images: List<ShowTmdbImage>
+//    var relations: List<CasoEntity>
+    var relations: List<CasoEntity>
 
-    val show: TiviShow
+//    var images: List<ShowTmdbImage>
+
+    val caso: CasoEntity
         get() {
             check(relations.size == 1)
             return relations[0]
         }
 
-    val poster: ShowTmdbImage?
+//    val poster: ShowTmdbImage?
 
-    fun generateStableId(): Long {
-        return Objects.hash(entry::class.java.name, entry.showId).toLong()
-    }
+//    fun generateStableId(): Long {
+//        return Objects.hash(entry::class.java.name, entry.showId).toLong()
+//    }
 }

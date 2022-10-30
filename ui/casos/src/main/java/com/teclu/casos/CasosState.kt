@@ -1,11 +1,12 @@
 package com.teclu.casos
 
-import com.teclu.domain.preferences.UserObject
-import com.teclu.soporte.dto.casos.AllCasosItem
-import com.teclu.soporte.dto.placeholder.PostUser
+import com.teclu.data.android.preferences.UserObject
+import com.teclu.soporte.entities.CasoEntity
+import com.teclu.util.UiMessage
 
 data class CasosState (
-    val casos:List<AllCasosItem> = emptyList(),
+    val casos:List<CasoEntity> = emptyList(),
     val loading:Boolean = false,
-    val user:UserObject? = null
+    val user: UserObject? = null,
+    val message:UiMessage? = null
 )
