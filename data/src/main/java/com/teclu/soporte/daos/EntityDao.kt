@@ -18,12 +18,13 @@ package com.teclu.soporte.daos
 
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Transaction
 import androidx.room.Update
 import com.teclu.soporte.entities.AppEntity
 
 abstract class EntityDao<in E : AppEntity> {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insert(entity: E): Long
 
     @Insert
@@ -42,11 +43,11 @@ abstract class EntityDao<in E : AppEntity> {
     open suspend fun withTransaction(tx: suspend () -> Unit) = tx()
 
     suspend fun insertOrUpdate(entity: E): Long {
-        return if (entity.idEntity == 0L) {
+        return if (entity.id == 0L) {
             insert(entity)
         } else {
             update(entity)
-            entity.idEntity
+            entity.id
         }
     }
 

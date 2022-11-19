@@ -16,7 +16,7 @@ import javax.inject.Inject
 class UpdateCasos @Inject constructor(
     private val dispatchers: AppCoroutineDispatchers,
     private val casoStore: CasoStore,
-    private val userDataStore: DataStore<UserObject>,
+//    private val userDataStore: DataStore<UserObject>,
     ) : Interactor<UpdateCasos.Params>() {
 
     override suspend fun doWork(params: Params) {

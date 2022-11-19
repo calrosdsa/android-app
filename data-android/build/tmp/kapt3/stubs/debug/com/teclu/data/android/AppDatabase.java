@@ -1,13 +1,15 @@
 package com.teclu.data.android;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import com.teclu.soporte.AppDaoDatabase;
 import com.teclu.soporte.entities.CasoEntity;
 import com.teclu.soporte.entities.CasosEntries;
+import com.teclu.soporte.entities.ImageEntity;
 
-@androidx.room.Database(entities = {com.teclu.soporte.entities.CasoEntity.class, com.teclu.soporte.entities.CasosEntries.class}, version = 1)
+@androidx.room.TypeConverters(value = {com.teclu.data.android.Converter.class})
+@androidx.room.Database(entities = {com.teclu.soporte.entities.CasoEntity.class, com.teclu.soporte.entities.CasosEntries.class, com.teclu.soporte.entities.ImageEntity.class}, version = 1)
 @kotlin.Metadata(mv = {1, 7, 1}, k = 1, d1 = {"\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\b\'\u0018\u0000 \u00042\u00020\u00012\u00020\u0002:\u0001\u0004B\u0005\u00a2\u0006\u0002\u0010\u0003\u00a8\u0006\u0005"}, d2 = {"Lcom/teclu/data/android/AppDatabase;", "Landroidx/room/RoomDatabase;", "Lcom/teclu/soporte/AppDaoDatabase;", "()V", "Companion", "data-android_debug"})
 public abstract class AppDatabase extends androidx.room.RoomDatabase implements com.teclu.soporte.AppDaoDatabase {
     @org.jetbrains.annotations.NotNull()

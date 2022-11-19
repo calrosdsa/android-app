@@ -9,8 +9,7 @@ import androidx.room.PrimaryKey
 )
 data class CasoEntity(
     @PrimaryKey(autoGenerate = true)
-    override val idEntity:Long =0,
-    @ColumnInfo(name = "id") val idCaso: Int,
+    @ColumnInfo(name = "id") override val id: Long,
     val areaCaso: String,
     val clienteName: String,
     val created: String,

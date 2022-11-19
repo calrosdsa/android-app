@@ -9,8 +9,9 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class CasosDao : EntityDao<CasoEntity>() {
-    @Query("SELECT *  from caso")
-    abstract fun getCasosDao():Flow<List<CasoEntity>>
+//    @Query("SELECT *  from caso LIMIT :count OFFSET :offset")
+    @Query("SELECT *  from caso ")
+    abstract fun getCasosDao():List<CasoEntity>
 //    @Transaction
 //    @Query("SELECT * from caso")
 //    abstract fun getCasosPaging():PagingSource<Int,List<CasoEntity>>

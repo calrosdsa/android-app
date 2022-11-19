@@ -1,0 +1,11 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.teclu.soporte.auth" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="23"
+6-->C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\auth\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest12089398307492164107.xml
+7        android:targetSdkVersion="31" />
+7-->C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\auth\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest12089398307492164107.xml
+8
+9</manifest>

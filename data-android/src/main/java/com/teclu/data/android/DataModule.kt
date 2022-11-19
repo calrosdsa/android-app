@@ -76,6 +76,8 @@ object DatabaseDaoModule {
     fun provideCasosDao(db:AppDatabase) = db.casosDao()
     @Provides
     fun provideCasoEntriesDao(db:AppDatabase) = db.casoEntriesDao()
+    @Provides
+    fun provideImageDao(db:AppDatabase) = db.imageDao()
 }
 
 @InstallIn(SingletonComponent::class)

@@ -2,20 +2,14 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a5b9bd61b65ddbb156b96d7d8540b581",
+    "identityHash": "103c3e40abcdcf26d74da19024abd385",
     "entities": [
       {
         "tableName": "caso",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idEntity` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id` INTEGER NOT NULL, `areaCaso` TEXT NOT NULL, `clienteName` TEXT NOT NULL, `created` TEXT NOT NULL, `descripcion` TEXT NOT NULL, `estado` INTEGER NOT NULL, `fecha_fin` TEXT NOT NULL, `fecha_inicio` TEXT NOT NULL, `funcionarioName` TEXT NOT NULL, `prioridad` INTEGER NOT NULL, `titulo` TEXT NOT NULL, `updated` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `areaCaso` TEXT NOT NULL, `clienteName` TEXT NOT NULL, `created` TEXT NOT NULL, `descripcion` TEXT NOT NULL, `estado` INTEGER NOT NULL, `fecha_fin` TEXT NOT NULL, `fecha_inicio` TEXT NOT NULL, `funcionarioName` TEXT NOT NULL, `prioridad` INTEGER NOT NULL, `titulo` TEXT NOT NULL, `updated` TEXT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "idEntity",
-            "columnName": "idEntity",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "idCaso",
+            "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
@@ -89,7 +83,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "idEntity"
+            "id"
           ],
           "autoGenerate": true
         },
@@ -98,11 +92,11 @@
       },
       {
         "tableName": "casos_entry",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idEntity` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `caso_id` INTEGER NOT NULL, `page` INTEGER NOT NULL, `page_order` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `caso_id` INTEGER NOT NULL, `page` INTEGER NOT NULL, `page_order` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "idEntity",
-            "columnName": "idEntity",
+            "fieldPath": "id",
+            "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -127,9 +121,53 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "idEntity"
+            "id"
           ],
           "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "image_db",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `url` BLOB, `thumbnailUrl` TEXT NOT NULL, `isSaved` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "thumbnailUrl",
+            "columnName": "thumbnailUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSaved",
+            "columnName": "isSaved",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -138,7 +176,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a5b9bd61b65ddbb156b96d7d8540b581')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '103c3e40abcdcf26d74da19024abd385')"
     ]
   }
 }

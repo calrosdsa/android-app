@@ -17,9 +17,11 @@
 
 plugins {
     alias(libs.plugins.android.library)
+//    alias(libs.plugins.android.library)
+//    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.teclu.common.ui.resources"
+    namespace = "com.teclu.soporte.common.ui.resources"
 }
 

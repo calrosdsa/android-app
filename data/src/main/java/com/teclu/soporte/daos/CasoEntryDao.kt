@@ -15,6 +15,10 @@ abstract class CasoEntryDao : PaginatedEntryDao<CasosEntries,CasosEntryWith>(){
     abstract fun getCasosPaging(): PagingSource<Int,CasosEntryWith>
 
     @Transaction
+    @Query("SELECT * from casos_entry")
+    abstract fun getCasosEntries(): List<CasosEntryWith>
+
+    @Transaction
     @Query("SELECT * FROM casos_entry WHERE page = :page ORDER BY page_order")
     abstract fun entriesObservable(page: Int): Flow<List<CasosEntries>>
 

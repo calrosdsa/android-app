@@ -13,7 +13,7 @@ fun Caso.toCasosEntity():CasoEntity{
         fecha_fin = fecha_fin,
         fecha_inicio = fecha_inicio,
         funcionarioName = funcionarioName,
-        idCaso = id,
+        id = id.toLong(),
         prioridad = prioridad,
         titulo = titulo,
         updated = updated

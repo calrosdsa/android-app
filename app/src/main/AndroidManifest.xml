@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TecluApplication"
         android:allowBackup="true"
@@ -13,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App.SplashScreenTheme"
         tools:targetApi="31">
+        <profileable
+            android:shell="true"
+            tools:targetApi="29" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -24,6 +30,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove">
+
+            <!--
+                 Disable the WorkManager default initializer since
+                 we are providing our own configuration.
+            -->
+            <!-- <meta-data -->
+            <!-- android:name="androidx.work.WorkManagerInitializer" -->
+            <!-- android:value="androidx.startup" -->
+            <!-- tools:node="remove" /> -->
+        </provider>
     </application>
 
 </manifest>

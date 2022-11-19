@@ -3,6 +3,7 @@ package com.teclu.soporte.inject
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.os.ConfigurationCompat
+import coil.ImageLoader
 import com.teclu.inject.MediumDate
 import com.teclu.inject.MediumDateTime
 import com.teclu.inject.ShortDate
@@ -49,12 +50,18 @@ object AppModule {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
-            .baseUrl("https://2d3f-138-36-78-158.sa.ngrok.io")
+            .baseUrl("https://jsonplaceholder.typicode.com")
             //    .client(OkHttpClient.Builder()
             //      .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }).build())
             .build()
             .create()
     }
+    @Provides
+    @Singleton
+    fun provideImageLoader(
+        @ApplicationContext context: Context
+    )= ImageLoader(context)
+
     @Singleton
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {

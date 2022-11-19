@@ -17,7 +17,7 @@
 package com.teclu.soporte.entities
 
 interface AppEntity {
-    val idEntity: Long
+    val id: Long
 }
 
 interface TraktIdEntity {

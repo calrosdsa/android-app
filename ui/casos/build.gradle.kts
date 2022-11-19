@@ -38,6 +38,7 @@ dependencies {
     implementation(projects.base)
     implementation(projects.domain)
     implementation(projects.dataAndroid)
+//    implementation(projects.tasks)
     implementation(projects.common.ui.compose)
 //    implementation(projects.common.ui.view)
 

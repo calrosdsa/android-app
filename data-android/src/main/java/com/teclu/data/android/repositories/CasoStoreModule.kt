@@ -13,11 +13,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.*
-import java.io.IOException
 import javax.inject.Singleton
 
 
 typealias CasoStore = Store<FilterParams, List<CasosEntries>>
+
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -44,9 +44,12 @@ internal object CasoStoreModule {
             },
             writer ={ params, response->
                 casoEntryDao.withTransaction {
+//                    val  casos = casoEntryDao.getCasosEntries()
+//                    Log.d("DEBUG",casos.size.toString())
                 val entries = response.map { (caso,entry)->
+//                    Log.d("DEBUG",caso.titulo)
                     casosDao.insert(caso)
-                    entry.copy(casoId = caso.idCaso.toLong(),page = params.page)
+                    entry.copy(casoId = caso.id.toLong(),page = params.page)
                 }
                     if(params.page ==1 ){
                     casoEntryDao.deleteAll()

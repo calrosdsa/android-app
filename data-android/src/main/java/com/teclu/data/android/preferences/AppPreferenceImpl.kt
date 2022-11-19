@@ -13,7 +13,7 @@ class AppPreferenceImpl @Inject constructor(
     private val preferences:SharedPreferences
 ) :AppPreferences {
     override val initialScreenStream:MutableStateFlow<String>
-    override var initialScreen: String by InitialScreenPreferenceDelegate("initial_screen",Screen.Login.route)
+    override var initialScreen: String by InitialScreenPreferenceDelegate("initial_screen",Screen.Casos.route)
 
     init{
         initialScreenStream = MutableStateFlow(initialScreen)

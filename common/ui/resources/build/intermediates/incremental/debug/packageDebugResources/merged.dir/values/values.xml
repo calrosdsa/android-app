@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="fab_margin">16dp</dimen>
+    <string name="app_name">Teclu Mobility</string>
+    <string name="btnConfigurationGuardar">Guardar</string>
+    <string name="btnConfigurationSincronizar">Re-Sincronizar</string>
+    <string name="btnMainIngreso">Ingreso</string>
+    <string name="btnMainMoreActions">Configuraciones</string>
+    <string name="btnMainSalida">Salida</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="imgAccessPersonal">User image</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="title_activity_access">AccessActivity</string>
+    <string name="title_activity_access_compoat">AccessActivityCompoat</string>
+    <string name="title_activity_mustering">Mustering</string>
+    <string name="title_activity_waiting">WaitingActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="txtAccessCard">Tarjeta</string>
+    <string name="txtAccessCardNumber">5416777</string>
+    <string name="txtAccessCompany">Empresa</string>
+    <string name="txtAccessCompanyName">ANDINA</string>
+    <string name="txtAccessGrant">Acceso Permitido</string>
+    <string name="txtAccessID">C.I.</string>
+    <string name="txtAccessIDNumber">5416777</string>
+    <string name="txtAccessInformation"><![CDATA[<-- Volver a menú]]></string>
+    <string name="txtAccessInformation2"><![CDATA[<-- Volver a Ciudades]]></string>
+    <string name="txtAccessInformation3"><![CDATA[<-- Volver a Mustering]]></string>
+    <string name="txtAccessName">PATRICK ADRIAN GÓMEZ</string>
+    <string name="txtConfigurationControladora">Dirección de Controladora:</string>
+    <string name="txtConfigurationGPS">Intervalo GPS:</string>
+    <string name="txtConfigurationInformation"><![CDATA[<-- Volver a menú]]></string>
+    <string name="txtConfigurationMetodo">Método de conexión</string>
+    <string name="txtConfigurationSeg1">(En segundos)</string>
+    <string name="txtConfigurationSeg2">(En segundos)</string>
+    <string name="txtConfigurationServidor">Dirección de Servidor:</string>
+    <string name="txtConfigurationTiempo">Tiempo de Sincronización</string>
+    <string name="txtConfigurationUltimos">Ultimos Eventos</string>
+    <string name="txtMainServerState">Conectado al Servidor</string>
+    <string name="txtWaitingWait">Esperando Identificación</string>
+    <style name="Theme.TecluMobility" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/purple_700</item>
+    </style>
+    <style name="Theme.TecluMobility.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.TecluMobility.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.TecluMobility.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+</resources>

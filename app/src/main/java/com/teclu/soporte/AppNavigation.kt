@@ -1,14 +1,18 @@
 package com.teclu.soporte
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.*
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -21,6 +25,7 @@ import com.teclu.constants.LeafScreen
 import com.teclu.constants.Params
 import com.teclu.constants.Screen
 import com.teclu.soporte.auth.signin.LoginScreen
+import com.teclu.soporte.composenavigator.ComposeNavigator
 
 
 @ExperimentalAnimationApi
@@ -28,18 +33,22 @@ import com.teclu.soporte.auth.signin.LoginScreen
 internal fun AppNavigation(
   navController: NavHostController,
   initialScreen: String,
-  modifier:Modifier = Modifier
+  modifier:Modifier = Modifier,
+  composeNavigator: ComposeNavigator
 ){
+    LaunchedEffect(Unit) {
+        composeNavigator.handleNavigationCommands(navController)
+    }
     AnimatedNavHost(
         navController = navController,
         startDestination = initialScreen,
-//        enterTransition = { defaultEnterTransition(initialState, targetState) },
-//        exitTransition = { defaultExitTransition(initialState, targetState) },
-//        popEnterTransition = { defaultPopEnterTransition() },
-//        popExitTransition = { defaultPopExitTransition() },
+        enterTransition = { defaultEnterTransition(initialState, targetState) },
+        exitTransition = { defaultExitTransition(initialState, targetState) },
+        popEnterTransition = { defaultPopEnterTransition() },
+        popExitTransition = { defaultPopExitTransition() },
         modifier = modifier
     ) {
-        addCasosTopLevel(navController)
+        addCasosTopLevel(composeNavigator)
         composable(route = Screen.Login.route){
             LoginScreen(navController)
         }
@@ -51,51 +60,55 @@ internal fun AppNavigation(
 
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.addCasosTopLevel(
-    navController: NavController
+//    navController: NavController,
+    composeNavigator: ComposeNavigator
 ){
     navigation(
         route =Screen.Casos.route,
-        startDestination = LeafScreen.Casos.createRoute(Screen.Casos)
+        startDestination = LeafScreen.CasoDetail.createRoute(Screen.Casos)
     ){
 
-        addCasos(navController)
-        addCasoDetail(navController)
+        addCasos(composeNavigator)
+        addCasoDetail()
+//        addCasoDetail(navController)
     }
 }
 
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.addCasos(
-    navController: NavController
-){
-    composableDetail(
-        route =LeafScreen.Casos.createRoute(Screen.Casos),
-//        debugLabel = "Casos()"
-    ){
-        Scaffold(modifier = Modifier.fillMaxSize()) {padding->
-        Box(modifier = Modifier
-            .padding(padding)
-        ) {
-        TextButton(onClick = {
-            navController.navigate(LeafScreen.CasoDetail.createRoute(Screen.Casos))
-        }) {
-            Text(text = "Navigate to Casos")
-        }
-        }
+//    navController: NavController,
+    composeNavigator: ComposeNavigator
+) {
+    composable(
+        route = LeafScreen.Casos.createRoute(Screen.Casos),
+        debugLabel = "Casos()"
+    ) {
+        Scaffold(modifier = Modifier.fillMaxSize()) {
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(it)
+            ) {
+                TextButton(onClick = {
+                    composeNavigator.navigate(LeafScreen.CasoDetail.createRoute(Screen.Casos))
+                }) {
+                    Text(text = "Navigate to Casos")
+                }
+            }
         }
     }
 }
 
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.addCasoDetail(
-    navController: NavController
+//    navController: NavController
 ){
-    composableDetail(
+    composable(
         route =LeafScreen.CasoDetail.createRoute(Screen.Casos),
-//        debugLabel = "Casos()"
+        debugLabel = "Casos()"
     ){
          CasosScreen(
-             navigateToCasoDetail = {
-                 navController.navigate(Screen.CasoDetail.route + "/$it")}
+//             navigateToCasoDetail = {
+//                 navController.navigate(Screen.CasoDetail.route + "/$it")}
          )
     }
 }
@@ -147,6 +160,7 @@ private fun AnimatedContentScope<*>.defaultPopExitTransition(): ExitTransition {
 
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.composableDetail(
     route: String,
@@ -176,6 +190,8 @@ fun NavGraphBuilder.composableDetail(
         //       popEnterTransition = { slideInHorizontally(initialOffsetX = { 3000 }, animationSpec = tween(500))},
         //       popExitTransition= { slideOutHorizontally(targetOffsetX = { 3000 }, animationSpec = tween(500))},
     ) {
-        content()
+
+               content()
+        }
     }
-}
+

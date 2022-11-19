@@ -1,7 +1,6 @@
 package com.teclu.data.android.mapper;
 
 import com.teclu.soporte.dto.casos.Caso;
-import com.teclu.soporte.dto.casos.CasosDto;
 import com.teclu.soporte.entities.CasoEntity;
 import com.teclu.soporte.mapper.Mapper;
 import javax.inject.Inject;

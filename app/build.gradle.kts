@@ -26,6 +26,14 @@ android {
 //            proguardFiles  getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             proguardFiles("proguard-rules.pro")
         }
+        debug {
+            proguardFiles("proguard-rules.pro")
+        }
+        create("benchmark") {
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -78,7 +86,9 @@ dependencies {
     implementation(projects.ui.casos)
     implementation(projects.ui.auth)
     implementation(projects.ui.casoDetail)
+//    implementation(projects.tasks)
 
+    implementation(libs.coil.coil)
     implementation(libs.androidx.datastore)
     implementation(libs.splashscreen)
 
@@ -109,8 +119,20 @@ dependencies {
     implementation(libs.hilt.compose)
     kapt(libs.hilt.compiler)
 
-    implementation(libs.hilt.work)
-    kapt(libs.hilt.compiler)
+
+    //Hilt with workManager
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
+//    implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    // When using Kotlin.
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("androidx.startup:startup-runtime:1.1.1")
+
+//    implementation(libs.hilt.work)
+//    kapt(libs.hilt.compiler)
+//    kapt("androidx.hilt:hilt-compiler:1.0.0")
 
 
     implementation(libs.retrofit.retrofit)

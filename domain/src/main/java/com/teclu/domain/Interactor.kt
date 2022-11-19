@@ -22,16 +22,13 @@ import com.teclu.base.InvokeError
 import com.teclu.base.InvokeStarted
 import com.teclu.base.InvokeStatus
 import com.teclu.base.InvokeSuccess
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withTimeout
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.CoroutineContext
 
 abstract class Interactor<in P> {
     operator fun invoke(
@@ -95,6 +92,7 @@ abstract class SubjectInteractor<P : Any, T> {
 
     val flow: Flow<T> = paramState
         .distinctUntilChanged()
+//        .debounce(100)
         .flatMapLatest { createObservable(it) }
         .distinctUntilChanged()
 

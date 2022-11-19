@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml:2:13-83
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml:2:13-83
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml:2:13-83
+	package
+		INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+		ADDED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml:2:13-83
+		INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+	xmlns:android
+		ADDED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml:2:23-81
+uses-sdk
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml reason: use-sdk injection requested
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+		ADDED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+		INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+		ADDED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml
+		INJECTED from C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\casos\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest18176958730434694377.xml

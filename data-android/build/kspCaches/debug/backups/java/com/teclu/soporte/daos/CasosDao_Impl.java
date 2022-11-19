@@ -27,13 +27,14 @@ import java.util.concurrent.Callable;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function1;
-import kotlinx.coroutines.flow.Flow;
 
 @SuppressWarnings({"unchecked", "deprecation"})
 public final class CasosDao_Impl extends CasosDao {
   private final RoomDatabase __db;
 
   private final EntityInsertionAdapter<CasoEntity> __insertionAdapterOfCasoEntity;
+
+  private final EntityInsertionAdapter<CasoEntity> __insertionAdapterOfCasoEntity_1;
 
   private final EntityDeletionOrUpdateAdapter<CasoEntity> __deletionAdapterOfCasoEntity;
 
@@ -48,131 +49,187 @@ public final class CasosDao_Impl extends CasosDao {
     this.__insertionAdapterOfCasoEntity = new EntityInsertionAdapter<CasoEntity>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `caso` (`idEntity`,`id`,`areaCaso`,`clienteName`,`created`,`descripcion`,`estado`,`fecha_fin`,`fecha_inicio`,`funcionarioName`,`prioridad`,`titulo`,`updated`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `caso` (`id`,`areaCaso`,`clienteName`,`created`,`descripcion`,`estado`,`fecha_fin`,`fecha_inicio`,`funcionarioName`,`prioridad`,`titulo`,`updated`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
       public void bind(SupportSQLiteStatement stmt, CasoEntity value) {
-        stmt.bindLong(1, value.getIdEntity());
-        stmt.bindLong(2, value.getIdCaso());
+        stmt.bindLong(1, value.getId());
         if (value.getAreaCaso() == null) {
-          stmt.bindNull(3);
+          stmt.bindNull(2);
         } else {
-          stmt.bindString(3, value.getAreaCaso());
+          stmt.bindString(2, value.getAreaCaso());
         }
         if (value.getClienteName() == null) {
-          stmt.bindNull(4);
+          stmt.bindNull(3);
         } else {
-          stmt.bindString(4, value.getClienteName());
+          stmt.bindString(3, value.getClienteName());
         }
         if (value.getCreated() == null) {
-          stmt.bindNull(5);
+          stmt.bindNull(4);
         } else {
-          stmt.bindString(5, value.getCreated());
+          stmt.bindString(4, value.getCreated());
         }
         if (value.getDescripcion() == null) {
-          stmt.bindNull(6);
+          stmt.bindNull(5);
         } else {
-          stmt.bindString(6, value.getDescripcion());
+          stmt.bindString(5, value.getDescripcion());
         }
-        stmt.bindLong(7, value.getEstado());
+        stmt.bindLong(6, value.getEstado());
         if (value.getFecha_fin() == null) {
-          stmt.bindNull(8);
+          stmt.bindNull(7);
         } else {
-          stmt.bindString(8, value.getFecha_fin());
+          stmt.bindString(7, value.getFecha_fin());
         }
         if (value.getFecha_inicio() == null) {
-          stmt.bindNull(9);
+          stmt.bindNull(8);
         } else {
-          stmt.bindString(9, value.getFecha_inicio());
+          stmt.bindString(8, value.getFecha_inicio());
         }
         if (value.getFuncionarioName() == null) {
-          stmt.bindNull(10);
+          stmt.bindNull(9);
         } else {
-          stmt.bindString(10, value.getFuncionarioName());
+          stmt.bindString(9, value.getFuncionarioName());
         }
-        stmt.bindLong(11, value.getPrioridad());
+        stmt.bindLong(10, value.getPrioridad());
         if (value.getTitulo() == null) {
-          stmt.bindNull(12);
+          stmt.bindNull(11);
         } else {
-          stmt.bindString(12, value.getTitulo());
+          stmt.bindString(11, value.getTitulo());
         }
         if (value.getUpdated() == null) {
-          stmt.bindNull(13);
+          stmt.bindNull(12);
         } else {
-          stmt.bindString(13, value.getUpdated());
+          stmt.bindString(12, value.getUpdated());
+        }
+      }
+    };
+    this.__insertionAdapterOfCasoEntity_1 = new EntityInsertionAdapter<CasoEntity>(__db) {
+      @Override
+      public String createQuery() {
+        return "INSERT OR ABORT INTO `caso` (`id`,`areaCaso`,`clienteName`,`created`,`descripcion`,`estado`,`fecha_fin`,`fecha_inicio`,`funcionarioName`,`prioridad`,`titulo`,`updated`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?)";
+      }
+
+      @Override
+      public void bind(SupportSQLiteStatement stmt, CasoEntity value) {
+        stmt.bindLong(1, value.getId());
+        if (value.getAreaCaso() == null) {
+          stmt.bindNull(2);
+        } else {
+          stmt.bindString(2, value.getAreaCaso());
+        }
+        if (value.getClienteName() == null) {
+          stmt.bindNull(3);
+        } else {
+          stmt.bindString(3, value.getClienteName());
+        }
+        if (value.getCreated() == null) {
+          stmt.bindNull(4);
+        } else {
+          stmt.bindString(4, value.getCreated());
+        }
+        if (value.getDescripcion() == null) {
+          stmt.bindNull(5);
+        } else {
+          stmt.bindString(5, value.getDescripcion());
+        }
+        stmt.bindLong(6, value.getEstado());
+        if (value.getFecha_fin() == null) {
+          stmt.bindNull(7);
+        } else {
+          stmt.bindString(7, value.getFecha_fin());
+        }
+        if (value.getFecha_inicio() == null) {
+          stmt.bindNull(8);
+        } else {
+          stmt.bindString(8, value.getFecha_inicio());
+        }
+        if (value.getFuncionarioName() == null) {
+          stmt.bindNull(9);
+        } else {
+          stmt.bindString(9, value.getFuncionarioName());
+        }
+        stmt.bindLong(10, value.getPrioridad());
+        if (value.getTitulo() == null) {
+          stmt.bindNull(11);
+        } else {
+          stmt.bindString(11, value.getTitulo());
+        }
+        if (value.getUpdated() == null) {
+          stmt.bindNull(12);
+        } else {
+          stmt.bindString(12, value.getUpdated());
         }
       }
     };
     this.__deletionAdapterOfCasoEntity = new EntityDeletionOrUpdateAdapter<CasoEntity>(__db) {
       @Override
       public String createQuery() {
-        return "DELETE FROM `caso` WHERE `idEntity` = ?";
+        return "DELETE FROM `caso` WHERE `id` = ?";
       }
 
       @Override
       public void bind(SupportSQLiteStatement stmt, CasoEntity value) {
-        stmt.bindLong(1, value.getIdEntity());
+        stmt.bindLong(1, value.getId());
       }
     };
     this.__updateAdapterOfCasoEntity = new EntityDeletionOrUpdateAdapter<CasoEntity>(__db) {
       @Override
       public String createQuery() {
-        return "UPDATE OR ABORT `caso` SET `idEntity` = ?,`id` = ?,`areaCaso` = ?,`clienteName` = ?,`created` = ?,`descripcion` = ?,`estado` = ?,`fecha_fin` = ?,`fecha_inicio` = ?,`funcionarioName` = ?,`prioridad` = ?,`titulo` = ?,`updated` = ? WHERE `idEntity` = ?";
+        return "UPDATE OR ABORT `caso` SET `id` = ?,`areaCaso` = ?,`clienteName` = ?,`created` = ?,`descripcion` = ?,`estado` = ?,`fecha_fin` = ?,`fecha_inicio` = ?,`funcionarioName` = ?,`prioridad` = ?,`titulo` = ?,`updated` = ? WHERE `id` = ?";
       }
 
       @Override
       public void bind(SupportSQLiteStatement stmt, CasoEntity value) {
-        stmt.bindLong(1, value.getIdEntity());
-        stmt.bindLong(2, value.getIdCaso());
+        stmt.bindLong(1, value.getId());
         if (value.getAreaCaso() == null) {
-          stmt.bindNull(3);
+          stmt.bindNull(2);
         } else {
-          stmt.bindString(3, value.getAreaCaso());
+          stmt.bindString(2, value.getAreaCaso());
         }
         if (value.getClienteName() == null) {
-          stmt.bindNull(4);
+          stmt.bindNull(3);
         } else {
-          stmt.bindString(4, value.getClienteName());
+          stmt.bindString(3, value.getClienteName());
         }
         if (value.getCreated() == null) {
-          stmt.bindNull(5);
+          stmt.bindNull(4);
         } else {
-          stmt.bindString(5, value.getCreated());
+          stmt.bindString(4, value.getCreated());
         }
         if (value.getDescripcion() == null) {
-          stmt.bindNull(6);
+          stmt.bindNull(5);
         } else {
-          stmt.bindString(6, value.getDescripcion());
+          stmt.bindString(5, value.getDescripcion());
         }
-        stmt.bindLong(7, value.getEstado());
+        stmt.bindLong(6, value.getEstado());
         if (value.getFecha_fin() == null) {
-          stmt.bindNull(8);
+          stmt.bindNull(7);
         } else {
-          stmt.bindString(8, value.getFecha_fin());
+          stmt.bindString(7, value.getFecha_fin());
         }
         if (value.getFecha_inicio() == null) {
-          stmt.bindNull(9);
+          stmt.bindNull(8);
         } else {
-          stmt.bindString(9, value.getFecha_inicio());
+          stmt.bindString(8, value.getFecha_inicio());
         }
         if (value.getFuncionarioName() == null) {
-          stmt.bindNull(10);
+          stmt.bindNull(9);
         } else {
-          stmt.bindString(10, value.getFuncionarioName());
+          stmt.bindString(9, value.getFuncionarioName());
         }
-        stmt.bindLong(11, value.getPrioridad());
+        stmt.bindLong(10, value.getPrioridad());
         if (value.getTitulo() == null) {
-          stmt.bindNull(12);
+          stmt.bindNull(11);
         } else {
-          stmt.bindString(12, value.getTitulo());
+          stmt.bindString(11, value.getTitulo());
         }
         if (value.getUpdated() == null) {
-          stmt.bindNull(13);
+          stmt.bindNull(12);
         } else {
-          stmt.bindString(13, value.getUpdated());
+          stmt.bindString(12, value.getUpdated());
         }
-        stmt.bindLong(14, value.getIdEntity());
+        stmt.bindLong(13, value.getId());
       }
     };
     this.__preparedStmtOfDeleteCaso = new SharedSQLiteStatement(__db) {
@@ -216,7 +273,7 @@ public final class CasosDao_Impl extends CasosDao {
       public Unit call() throws Exception {
         __db.beginTransaction();
         try {
-          __insertionAdapterOfCasoEntity.insert(entity);
+          __insertionAdapterOfCasoEntity_1.insert(entity);
           __db.setTransactionSuccessful();
           return Unit.INSTANCE;
         } finally {
@@ -234,7 +291,7 @@ public final class CasosDao_Impl extends CasosDao {
       public Unit call() throws Exception {
         __db.beginTransaction();
         try {
-          __insertionAdapterOfCasoEntity.insert(entities);
+          __insertionAdapterOfCasoEntity_1.insert(entities);
           __db.setTransactionSuccessful();
           return Unit.INSTANCE;
         } finally {
@@ -333,106 +390,95 @@ public final class CasosDao_Impl extends CasosDao {
   }
 
   @Override
-  public Flow<List<CasoEntity>> getCasosDao() {
-    final String _sql = "SELECT *  from caso";
+  public List<CasoEntity> getCasosDao() {
+    final String _sql = "SELECT *  from caso ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
-    return CoroutinesRoom.createFlow(__db, false, new String[]{"caso"}, new Callable<List<CasoEntity>>() {
-      @Override
-      public List<CasoEntity> call() throws Exception {
-        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
-        try {
-          final int _cursorIndexOfIdEntity = CursorUtil.getColumnIndexOrThrow(_cursor, "idEntity");
-          final int _cursorIndexOfIdCaso = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
-          final int _cursorIndexOfAreaCaso = CursorUtil.getColumnIndexOrThrow(_cursor, "areaCaso");
-          final int _cursorIndexOfClienteName = CursorUtil.getColumnIndexOrThrow(_cursor, "clienteName");
-          final int _cursorIndexOfCreated = CursorUtil.getColumnIndexOrThrow(_cursor, "created");
-          final int _cursorIndexOfDescripcion = CursorUtil.getColumnIndexOrThrow(_cursor, "descripcion");
-          final int _cursorIndexOfEstado = CursorUtil.getColumnIndexOrThrow(_cursor, "estado");
-          final int _cursorIndexOfFechaFin = CursorUtil.getColumnIndexOrThrow(_cursor, "fecha_fin");
-          final int _cursorIndexOfFechaInicio = CursorUtil.getColumnIndexOrThrow(_cursor, "fecha_inicio");
-          final int _cursorIndexOfFuncionarioName = CursorUtil.getColumnIndexOrThrow(_cursor, "funcionarioName");
-          final int _cursorIndexOfPrioridad = CursorUtil.getColumnIndexOrThrow(_cursor, "prioridad");
-          final int _cursorIndexOfTitulo = CursorUtil.getColumnIndexOrThrow(_cursor, "titulo");
-          final int _cursorIndexOfUpdated = CursorUtil.getColumnIndexOrThrow(_cursor, "updated");
-          final List<CasoEntity> _result = new ArrayList<CasoEntity>(_cursor.getCount());
-          while(_cursor.moveToNext()) {
-            final CasoEntity _item;
-            final long _tmpIdEntity;
-            _tmpIdEntity = _cursor.getLong(_cursorIndexOfIdEntity);
-            final int _tmpIdCaso;
-            _tmpIdCaso = _cursor.getInt(_cursorIndexOfIdCaso);
-            final String _tmpAreaCaso;
-            if (_cursor.isNull(_cursorIndexOfAreaCaso)) {
-              _tmpAreaCaso = null;
-            } else {
-              _tmpAreaCaso = _cursor.getString(_cursorIndexOfAreaCaso);
-            }
-            final String _tmpClienteName;
-            if (_cursor.isNull(_cursorIndexOfClienteName)) {
-              _tmpClienteName = null;
-            } else {
-              _tmpClienteName = _cursor.getString(_cursorIndexOfClienteName);
-            }
-            final String _tmpCreated;
-            if (_cursor.isNull(_cursorIndexOfCreated)) {
-              _tmpCreated = null;
-            } else {
-              _tmpCreated = _cursor.getString(_cursorIndexOfCreated);
-            }
-            final String _tmpDescripcion;
-            if (_cursor.isNull(_cursorIndexOfDescripcion)) {
-              _tmpDescripcion = null;
-            } else {
-              _tmpDescripcion = _cursor.getString(_cursorIndexOfDescripcion);
-            }
-            final int _tmpEstado;
-            _tmpEstado = _cursor.getInt(_cursorIndexOfEstado);
-            final String _tmpFecha_fin;
-            if (_cursor.isNull(_cursorIndexOfFechaFin)) {
-              _tmpFecha_fin = null;
-            } else {
-              _tmpFecha_fin = _cursor.getString(_cursorIndexOfFechaFin);
-            }
-            final String _tmpFecha_inicio;
-            if (_cursor.isNull(_cursorIndexOfFechaInicio)) {
-              _tmpFecha_inicio = null;
-            } else {
-              _tmpFecha_inicio = _cursor.getString(_cursorIndexOfFechaInicio);
-            }
-            final String _tmpFuncionarioName;
-            if (_cursor.isNull(_cursorIndexOfFuncionarioName)) {
-              _tmpFuncionarioName = null;
-            } else {
-              _tmpFuncionarioName = _cursor.getString(_cursorIndexOfFuncionarioName);
-            }
-            final int _tmpPrioridad;
-            _tmpPrioridad = _cursor.getInt(_cursorIndexOfPrioridad);
-            final String _tmpTitulo;
-            if (_cursor.isNull(_cursorIndexOfTitulo)) {
-              _tmpTitulo = null;
-            } else {
-              _tmpTitulo = _cursor.getString(_cursorIndexOfTitulo);
-            }
-            final String _tmpUpdated;
-            if (_cursor.isNull(_cursorIndexOfUpdated)) {
-              _tmpUpdated = null;
-            } else {
-              _tmpUpdated = _cursor.getString(_cursorIndexOfUpdated);
-            }
-            _item = new CasoEntity(_tmpIdEntity,_tmpIdCaso,_tmpAreaCaso,_tmpClienteName,_tmpCreated,_tmpDescripcion,_tmpEstado,_tmpFecha_fin,_tmpFecha_inicio,_tmpFuncionarioName,_tmpPrioridad,_tmpTitulo,_tmpUpdated);
-            _result.add(_item);
-          }
-          return _result;
-        } finally {
-          _cursor.close();
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfAreaCaso = CursorUtil.getColumnIndexOrThrow(_cursor, "areaCaso");
+      final int _cursorIndexOfClienteName = CursorUtil.getColumnIndexOrThrow(_cursor, "clienteName");
+      final int _cursorIndexOfCreated = CursorUtil.getColumnIndexOrThrow(_cursor, "created");
+      final int _cursorIndexOfDescripcion = CursorUtil.getColumnIndexOrThrow(_cursor, "descripcion");
+      final int _cursorIndexOfEstado = CursorUtil.getColumnIndexOrThrow(_cursor, "estado");
+      final int _cursorIndexOfFechaFin = CursorUtil.getColumnIndexOrThrow(_cursor, "fecha_fin");
+      final int _cursorIndexOfFechaInicio = CursorUtil.getColumnIndexOrThrow(_cursor, "fecha_inicio");
+      final int _cursorIndexOfFuncionarioName = CursorUtil.getColumnIndexOrThrow(_cursor, "funcionarioName");
+      final int _cursorIndexOfPrioridad = CursorUtil.getColumnIndexOrThrow(_cursor, "prioridad");
+      final int _cursorIndexOfTitulo = CursorUtil.getColumnIndexOrThrow(_cursor, "titulo");
+      final int _cursorIndexOfUpdated = CursorUtil.getColumnIndexOrThrow(_cursor, "updated");
+      final List<CasoEntity> _result = new ArrayList<CasoEntity>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final CasoEntity _item;
+        final long _tmpId;
+        _tmpId = _cursor.getLong(_cursorIndexOfId);
+        final String _tmpAreaCaso;
+        if (_cursor.isNull(_cursorIndexOfAreaCaso)) {
+          _tmpAreaCaso = null;
+        } else {
+          _tmpAreaCaso = _cursor.getString(_cursorIndexOfAreaCaso);
         }
+        final String _tmpClienteName;
+        if (_cursor.isNull(_cursorIndexOfClienteName)) {
+          _tmpClienteName = null;
+        } else {
+          _tmpClienteName = _cursor.getString(_cursorIndexOfClienteName);
+        }
+        final String _tmpCreated;
+        if (_cursor.isNull(_cursorIndexOfCreated)) {
+          _tmpCreated = null;
+        } else {
+          _tmpCreated = _cursor.getString(_cursorIndexOfCreated);
+        }
+        final String _tmpDescripcion;
+        if (_cursor.isNull(_cursorIndexOfDescripcion)) {
+          _tmpDescripcion = null;
+        } else {
+          _tmpDescripcion = _cursor.getString(_cursorIndexOfDescripcion);
+        }
+        final int _tmpEstado;
+        _tmpEstado = _cursor.getInt(_cursorIndexOfEstado);
+        final String _tmpFecha_fin;
+        if (_cursor.isNull(_cursorIndexOfFechaFin)) {
+          _tmpFecha_fin = null;
+        } else {
+          _tmpFecha_fin = _cursor.getString(_cursorIndexOfFechaFin);
+        }
+        final String _tmpFecha_inicio;
+        if (_cursor.isNull(_cursorIndexOfFechaInicio)) {
+          _tmpFecha_inicio = null;
+        } else {
+          _tmpFecha_inicio = _cursor.getString(_cursorIndexOfFechaInicio);
+        }
+        final String _tmpFuncionarioName;
+        if (_cursor.isNull(_cursorIndexOfFuncionarioName)) {
+          _tmpFuncionarioName = null;
+        } else {
+          _tmpFuncionarioName = _cursor.getString(_cursorIndexOfFuncionarioName);
+        }
+        final int _tmpPrioridad;
+        _tmpPrioridad = _cursor.getInt(_cursorIndexOfPrioridad);
+        final String _tmpTitulo;
+        if (_cursor.isNull(_cursorIndexOfTitulo)) {
+          _tmpTitulo = null;
+        } else {
+          _tmpTitulo = _cursor.getString(_cursorIndexOfTitulo);
+        }
+        final String _tmpUpdated;
+        if (_cursor.isNull(_cursorIndexOfUpdated)) {
+          _tmpUpdated = null;
+        } else {
+          _tmpUpdated = _cursor.getString(_cursorIndexOfUpdated);
+        }
+        _item = new CasoEntity(_tmpId,_tmpAreaCaso,_tmpClienteName,_tmpCreated,_tmpDescripcion,_tmpEstado,_tmpFecha_fin,_tmpFecha_inicio,_tmpFuncionarioName,_tmpPrioridad,_tmpTitulo,_tmpUpdated);
+        _result.add(_item);
       }
-
-      @Override
-      protected void finalize() {
-        _statement.release();
-      }
-    });
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
   }
 
   public static List<Class<?>> getRequiredConverters() {

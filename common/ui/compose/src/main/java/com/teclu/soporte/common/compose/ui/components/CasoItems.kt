@@ -2,21 +2,17 @@ package com.teclu.soporte.common.compose.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Update
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.teclu.enums.Roles
-import com.teclu.soporte.common.compose.LocalUtilApp
 import com.teclu.soporte.entities.CasoEntity
 
 @Composable
@@ -29,14 +25,15 @@ fun CasoItem(
 ) {
     Column(modifier = Modifier
         .fillMaxWidth()
+        .height(100.dp)
         .clickable {
-            navigateToCasoDetail(caso.idCaso.toString())
+            navigateToCasoDetail(caso.id.toString())
         }
         .padding(horizontal = 10.dp, vertical = 5.dp)
     ) {
         Text(
-            text = caso.titulo, style = MaterialTheme.typography.titleMedium.copy(
-                color = MaterialTheme.colorScheme.primary
+            text = caso.titulo, style = MaterialTheme.typography.subtitle1.copy(
+                color = MaterialTheme.colors.primary
             ), maxLines = 1
         )
         VerticalGrid() {
@@ -56,7 +53,7 @@ fun CasoItem(
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = caso.created.substring(0, 19), maxLines = 1)
             }
-                Icon(imageVector = Icons.Default.Menu, contentDescription = caso.idCaso.toString())
+                Icon(imageVector = Icons.Default.Menu, contentDescription = caso.id.toString())
         }
     }
 }

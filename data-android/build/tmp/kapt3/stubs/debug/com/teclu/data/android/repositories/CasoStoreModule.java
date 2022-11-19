@@ -13,7 +13,6 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import kotlinx.coroutines.flow.*;
-import java.io.IOException;
 import javax.inject.Singleton;
 
 @dagger.hilt.InstallIn(value = {dagger.hilt.components.SingletonComponent.class})

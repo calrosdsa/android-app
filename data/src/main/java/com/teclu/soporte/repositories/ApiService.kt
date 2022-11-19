@@ -4,6 +4,7 @@ import com.teclu.soporte.dto.auth.LoginRequest
 import com.teclu.soporte.dto.auth.LoginResponse
 import com.teclu.soporte.dto.casoDetail.CasoDetailDto
 import com.teclu.soporte.dto.casos.CasosDto
+import com.teclu.soporte.dto.photos.PhotosDtoItem
 import com.teclu.soporte.dto.placeholder.PostUser
 import retrofit2.http.*
 
@@ -39,4 +40,7 @@ interface ApiService {
     suspend fun getCasoById(
         @Path("casoId") casoId:String
     ):CasoDetailDto
+
+    @GET("/photos")
+    suspend fun getPhotos():List<PhotosDtoItem>
 }

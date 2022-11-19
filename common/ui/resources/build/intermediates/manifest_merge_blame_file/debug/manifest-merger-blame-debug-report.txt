@@ -1,11 +1,11 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.teclu.common.ui.resources" >
+3    package="com.teclu.soporte.common.ui.resources" >
 4
 5    <uses-sdk
 6        android:minSdkVersion="23"
-6-->C:\Users\59175\AndroidStudioProjects\soporte\common\ui\resources\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest7443274690199257303.xml
+6-->C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\common\ui\resources\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest10830144328197716727.xml
 7        android:targetSdkVersion="31" />
-7-->C:\Users\59175\AndroidStudioProjects\soporte\common\ui\resources\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest7443274690199257303.xml
+7-->C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\common\ui\resources\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest10830144328197716727.xml
 8
 9</manifest>

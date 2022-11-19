@@ -57,6 +57,8 @@ dependencies {
     implementation(projects.base)
     implementation(projects.data)
 //    implementation(projects.domain)
+//    implementation(projects.tasks)
+//    implementation(projects.domain)
 
     implementation(libs.androidx.datastore)
     implementation(libs.serialization.protobuf)
@@ -67,6 +69,8 @@ dependencies {
     implementation(libs.androidx.room.paging)
     ksp(libs.androidx.room.compiler)
 
+    implementation(libs.retrofit.gsonConverter)
+    implementation(libs.coil.coil)
     implementation(libs.androidx.paging.runtime)
 
     implementation(libs.hilt.library)

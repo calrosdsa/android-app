@@ -21,6 +21,8 @@ import com.teclu.soporte.daos.CasoEntryDao;
 import com.teclu.soporte.daos.CasoEntryDao_Impl;
 import com.teclu.soporte.daos.CasosDao;
 import com.teclu.soporte.daos.CasosDao_Impl;
+import com.teclu.soporte.daos.ImageDao;
+import com.teclu.soporte.daos.ImageDao_Impl;
 import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
@@ -38,21 +40,25 @@ public final class AppDatabase_Impl extends AppDatabase {
 
   private volatile CasoEntryDao _casoEntryDao;
 
+  private volatile ImageDao _imageDao;
+
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `caso` (`idEntity` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id` INTEGER NOT NULL, `areaCaso` TEXT NOT NULL, `clienteName` TEXT NOT NULL, `created` TEXT NOT NULL, `descripcion` TEXT NOT NULL, `estado` INTEGER NOT NULL, `fecha_fin` TEXT NOT NULL, `fecha_inicio` TEXT NOT NULL, `funcionarioName` TEXT NOT NULL, `prioridad` INTEGER NOT NULL, `titulo` TEXT NOT NULL, `updated` TEXT NOT NULL)");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `casos_entry` (`idEntity` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `caso_id` INTEGER NOT NULL, `page` INTEGER NOT NULL, `page_order` INTEGER NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `caso` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `areaCaso` TEXT NOT NULL, `clienteName` TEXT NOT NULL, `created` TEXT NOT NULL, `descripcion` TEXT NOT NULL, `estado` INTEGER NOT NULL, `fecha_fin` TEXT NOT NULL, `fecha_inicio` TEXT NOT NULL, `funcionarioName` TEXT NOT NULL, `prioridad` INTEGER NOT NULL, `titulo` TEXT NOT NULL, `updated` TEXT NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `casos_entry` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `caso_id` INTEGER NOT NULL, `page` INTEGER NOT NULL, `page_order` INTEGER NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `image_db` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `url` BLOB, `thumbnailUrl` TEXT NOT NULL, `isSaved` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a5b9bd61b65ddbb156b96d7d8540b581')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '103c3e40abcdcf26d74da19024abd385')");
       }
 
       @Override
       public void dropAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("DROP TABLE IF EXISTS `caso`");
         _db.execSQL("DROP TABLE IF EXISTS `casos_entry`");
+        _db.execSQL("DROP TABLE IF EXISTS `image_db`");
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
             mCallbacks.get(_i).onDestructiveMigration(_db);
@@ -91,9 +97,8 @@ public final class AppDatabase_Impl extends AppDatabase {
 
       @Override
       protected RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsCaso = new HashMap<String, TableInfo.Column>(13);
-        _columnsCaso.put("idEntity", new TableInfo.Column("idEntity", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsCaso.put("id", new TableInfo.Column("id", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashMap<String, TableInfo.Column> _columnsCaso = new HashMap<String, TableInfo.Column>(12);
+        _columnsCaso.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCaso.put("areaCaso", new TableInfo.Column("areaCaso", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCaso.put("clienteName", new TableInfo.Column("clienteName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCaso.put("created", new TableInfo.Column("created", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -115,7 +120,7 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Found:\n" + _existingCaso);
         }
         final HashMap<String, TableInfo.Column> _columnsCasosEntry = new HashMap<String, TableInfo.Column>(4);
-        _columnsCasosEntry.put("idEntity", new TableInfo.Column("idEntity", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsCasosEntry.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCasosEntry.put("caso_id", new TableInfo.Column("caso_id", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCasosEntry.put("page", new TableInfo.Column("page", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCasosEntry.put("page_order", new TableInfo.Column("page_order", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -128,9 +133,24 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoCasosEntry + "\n"
                   + " Found:\n" + _existingCasosEntry);
         }
+        final HashMap<String, TableInfo.Column> _columnsImageDb = new HashMap<String, TableInfo.Column>(5);
+        _columnsImageDb.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsImageDb.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsImageDb.put("url", new TableInfo.Column("url", "BLOB", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsImageDb.put("thumbnailUrl", new TableInfo.Column("thumbnailUrl", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsImageDb.put("isSaved", new TableInfo.Column("isSaved", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysImageDb = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesImageDb = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoImageDb = new TableInfo("image_db", _columnsImageDb, _foreignKeysImageDb, _indicesImageDb);
+        final TableInfo _existingImageDb = TableInfo.read(_db, "image_db");
+        if (! _infoImageDb.equals(_existingImageDb)) {
+          return new RoomOpenHelper.ValidationResult(false, "image_db(com.teclu.soporte.entities.ImageEntity).\n"
+                  + " Expected:\n" + _infoImageDb + "\n"
+                  + " Found:\n" + _existingImageDb);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "a5b9bd61b65ddbb156b96d7d8540b581", "bf4584ff4b35c63e0c18cbacb739bcdd");
+    }, "103c3e40abcdcf26d74da19024abd385", "119884b54c3f35721d3c33e802622ee6");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -143,7 +163,7 @@ public final class AppDatabase_Impl extends AppDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "caso","casos_entry");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "caso","casos_entry","image_db");
   }
 
   @Override
@@ -154,6 +174,7 @@ public final class AppDatabase_Impl extends AppDatabase {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `caso`");
       _db.execSQL("DELETE FROM `casos_entry`");
+      _db.execSQL("DELETE FROM `image_db`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -169,6 +190,7 @@ public final class AppDatabase_Impl extends AppDatabase {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(CasosDao.class, CasosDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(CasoEntryDao.class, CasoEntryDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(ImageDao.class, ImageDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -208,6 +230,20 @@ public final class AppDatabase_Impl extends AppDatabase {
           _casoEntryDao = new CasoEntryDao_Impl(this);
         }
         return _casoEntryDao;
+      }
+    }
+  }
+
+  @Override
+  public ImageDao imageDao() {
+    if (_imageDao != null) {
+      return _imageDao;
+    } else {
+      synchronized(this) {
+        if(_imageDao == null) {
+          _imageDao = new ImageDao_Impl(this);
+        }
+        return _imageDao;
       }
     }
   }

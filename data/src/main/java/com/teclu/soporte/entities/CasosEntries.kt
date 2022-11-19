@@ -9,7 +9,7 @@ import com.teclu.soporte.PaginatedEntry
     tableName = "casos_entry"
 )
 data class CasosEntries (
-    @PrimaryKey(autoGenerate = true) override val idEntity: Long = 0,
+    @PrimaryKey(autoGenerate = true) override val id: Long = 0,
     @ColumnInfo(name = "caso_id") override val casoId: Long,
     @ColumnInfo(name = "page") override val page: Int,
     @ColumnInfo(name = "page_order") val pageOrder: Int

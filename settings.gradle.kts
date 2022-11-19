@@ -42,14 +42,16 @@ include (
     ":data",
     ":data-android",
     ":domain",
+//    ":tasks",
     ":common:ui:compose",
     ":common:ui:resources",
     ":base",
     ":ui:casos",
-    ":ui:user-profile",
+//    ":ui:user-profile",
     ":ui:users",
     ":ui:caso-detail",
     ":ui:profile",
     ":ui:auth"
 
 )
+include(":benchmark")

@@ -21,8 +21,9 @@ import com.teclu.soporte.entities.CasoEntity
 
 interface EntryWithCaso<ET : Entry> {
     var entry: ET
-//    var relations: List<CasoEntity>
     var relations: List<CasoEntity>
+//    var relations: List<CasoEntity>
+//    var caso :CasoEntity
 
 //    var images: List<ShowTmdbImage>
 

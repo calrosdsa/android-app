@@ -1,7 +1,6 @@
 package com.teclu.data.android.mapper
 
 import com.teclu.soporte.dto.casos.Caso
-import com.teclu.soporte.dto.casos.CasosDto
 import com.teclu.soporte.entities.CasoEntity
 import com.teclu.soporte.mapper.Mapper
 import javax.inject.Inject
@@ -19,7 +18,7 @@ class CasoDtoToCasoEnitity @Inject constructor(
         fecha_fin = from.fecha_fin,
         fecha_inicio = from.fecha_inicio,
         funcionarioName = from.funcionarioName,
-        idCaso = from.id,
+        id = from.id.toLong(),
         prioridad = from.prioridad,
         titulo = from.titulo,
         updated = from.updated

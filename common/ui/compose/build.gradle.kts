@@ -16,8 +16,8 @@
  */
 
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+            alias(libs.plugins.android.library)
+            alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -36,6 +36,7 @@ android {
 dependencies {
     implementation(projects.data)
     implementation(projects.base)
+//    implementation(projects.common.ui.resources)
 //    api(projects.common.imageloading)
 //
 //    api(projects.common.ui.view)

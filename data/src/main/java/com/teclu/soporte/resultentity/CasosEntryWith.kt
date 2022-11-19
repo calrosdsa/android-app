@@ -10,9 +10,11 @@ class CasosEntryWith: EntryWithCaso<CasosEntries>{
     @Embedded
     override lateinit var entry: CasosEntries
 
-    @Relation(parentColumn = "caso_id", entityColumn = "idEntity")
+    @Relation(parentColumn = "caso_id", entityColumn = "id")
+//    override lateinit var caso:CasoEntity
     override lateinit var relations: List<CasoEntity>
-
+//
+//
     override fun equals(other: Any?): Boolean = when {
         other === this -> true
         other is CasosEntryWith -> {
@@ -20,6 +22,6 @@ class CasosEntryWith: EntryWithCaso<CasosEntries>{
         }
         else -> false
     }
-
+//
     override fun hashCode(): Int = Objects.hash(entry, relations)
 }

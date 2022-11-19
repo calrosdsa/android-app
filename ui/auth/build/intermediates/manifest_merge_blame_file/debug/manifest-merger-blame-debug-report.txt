@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="23"
-6-->C:\Users\59175\AndroidStudioProjects\soporte\ui\auth\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest9872134546529999414.xml
+6-->C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\auth\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest15789948600317776848.xml
 7        android:targetSdkVersion="31" />
-7-->C:\Users\59175\AndroidStudioProjects\soporte\ui\auth\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest9872134546529999414.xml
+7-->C:\Users\jorge\Desktop\AndroidStudioProjects\soporte\ui\auth\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest15789948600317776848.xml
 8
 9</manifest>
